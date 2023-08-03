@@ -6,35 +6,7 @@ function getComputerChoice(){
     ComputerChoice = choices[ Math.floor( Math.random()  * choices.length ) ];
     return ComputerChoice;
 }
-
-//Function to plays a single round of Rock Paper Scissors
-function singleRound(){
-    let playerChoice = playerSelection();
-    let computerChoice = getComputerChoice();
-    let messageWin = `You Win! ${playerChoice} beats ${computerChoice}`;
-    let messageLose = `You Lose! ${computerChoice} beats ${playerChoice}`;
-    if(playerChoice !== computerChoice){
-        computerChoice === "Rock" && playerChoice === "Paper"
-        ? console.log(messageWin) : 
-        computerChoice === "Rock" && playerChoice === "Scissor" 
-        ? console.log(messageLose) :
-        computerChoice === "Paper" && playerChoice === "Scissor"
-        ? console.log(messageWin)  :
-        computerChoice === "Paper" && playerChoice === "Rock"
-        ? console.log(messageLose)  :
-        computerChoice === "Scissor" && playerChoice === "Rock"
-        ? console.log(messageWin)  :
-        computerChoice === "Scissor" && playerChoice === "Paper"
-        ? console.log(messageLose)  :
-        console.log(`Tie! ${computerChoice} is the same ${playerChoice}`);
-    } 
-    else{
-        console.log(`Tie! ${computerChoice} is the same ${playerChoice}`);
-    }
-
-  
-} 
-
+// Function to ask the user for a choice
 function playerSelection(){
     let playerChoice = prompt("Write Rock, Paper or Scissor");
     playerChoice = playerChoice.toLowerCase();
@@ -44,12 +16,55 @@ function playerSelection(){
     playerChoice = playerChoice.charAt(0).toUpperCase() + playerChoice.substring(1);
     return playerChoice;
 }
+//Function to plays a single round of Rock Paper Scissors
+function playRound(){
+    let playerChoice = playerSelection();
+    let computerChoice = getComputerChoice();
+    let messageWin = `You Win! ${playerChoice} beats ${computerChoice}`;
+    let messageLose = `You Lose! ${computerChoice} beats ${playerChoice}`;
+    //Nested win conditions
+    if(playerChoice !== computerChoice){
+        if(computerChoice === "Rock" && playerChoice === "Paper"){
+            return messageWin;
+        }
+        if(computerChoice === "Rock" && playerChoice === "Scissor"){
+            return messageLose;
+        } 
+        if(computerChoice === "Paper" && playerChoice === "Scissor"){
+            return messageWin;
+        }
+        if(computerChoice === "Paper" && playerChoice === "Rock"){
+            return messageLose;
+        }
+        if(computerChoice === "Scissor" && playerChoice === "Rock"){
+            return messageWin;
+        }
+        if(computerChoice === "Scissor" && playerChoice === "Paper"){
+            return messageLose;
+        }  
+    } 
+    else{
+        return `Tie! ${computerChoice} is the same ${playerChoice}`;
+    }
 
-
-
-/*
-const roundResult = [ {
-         Win: `You Win ${playerSelection} beats ${computerSelection}.`,
-         Lose:`You lose! ${computerSelection} beats ${playerSelection}.`, 
-         Tie: `Tie! ${computerSelection} is same ${playerSelection}`} ];
-*/
+  
+} 
+//Function to play a game of 5 rounds
+function game()
+{
+    //Counter for the loop 
+    let i = 0;
+    let score = 0;
+    let roundResult;
+    while(i < 5){
+        roundResult = playRound();
+        alert(roundResult);
+        
+        if(roundResult.includes("You Win!")){
+            score += 1;
+        }
+        i++;
+        alert(`Your score is ${score}`);
+    }
+    score >= 3 ? alert(`You win the game! Your score was ${score}.`) : alert(`You lose the game! Your score was ${score}.`)
+}
