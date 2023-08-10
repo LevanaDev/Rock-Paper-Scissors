@@ -19,10 +19,27 @@ function showCounters(){
     spanWins.textContent = winsCounter;
     spanLoses.textContent = losesCounter;
     spanDraws.textContent = drawsCounter;
+    if( winsCounter === 5 && winsCounter !== 0 || winsCounter % 5 === 0 && winsCounter !== 0 ){
+        alert(`You win! \nScore: Wins: ${winsCounter}, Loses: ${losesCounter}, Draws: ${drawsCounter}`);  
+        resetCounters();  
+    }
+    else if( losesCounter === 5 && losesCounter !== 0 || losesCounter % 5 === 0 && losesCounter !== 0 ){
+        alert(`You lose! \nScore: Wins: ${winsCounter}, Loses: ${losesCounter}, Draws: ${drawsCounter}`);
+        resetCounters();
+    }
+    else if( drawsCounter === 5 && drawsCounter !== 0 || drawsCounter % 5 === 0 && drawsCounter !== 0 ){
+        alert(`Draw! \nScore: Wins: ${winsCounter}, Loses: ${losesCounter}, Draws: ${drawsCounter}`);
+        resetCounters();
+    }
 }
 
-function checkButton(){
-    alert("You press a button");
+function resetCounters(){
+    winsCounter = 0;
+    losesCounter = 0;
+    drawsCounter = 0;
+    spanWins.textContent = winsCounter;
+    spanLoses.textContent = losesCounter;
+    spanDraws.textContent = drawsCounter;
 }
 
 function rockSelected(){    
