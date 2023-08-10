@@ -4,13 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project: Rock Paper Scissors</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <script src="Rock-paper-scissors.js"></script>
-    <div class="game-container">
-   
-    <p></p>
-    <button class="play-round">Play a round</button>
+    <script src="Rock-paper-scissors.js" defer></script>
+    <h1>Rock, Paper, Scissors the game!</h1>
+    <div class="game-score-container">
+        <div class="game-container">
+         <h2>Do you want play a game?</h2>
+         <h3>Select your Weapon</h3>
+         <div class="figure-container Rock">
+                <img src="/images/rock.jpg">
+                <button id="btnRock">Rock</button>
+         </div>
+         <div class="figure-container Paper">
+                <img src="/images/paper.jpg">
+                <button id="btnPaper">Paper</button>
+          </div>
+            <div class="figure-container Scissors">
+             <img src="/images/scissors.jpg">
+             <button id="btnScissors">Scissors</button>
+          </div>
+         <div class="results-container">
+            <p id="showSelection"></p> <p id="computerSelection"></p>
+            <p id="showResult"></p>
+        </div>
+        </div>
+        <div class="counters">
+            <h3>Game scores</h3>
+            <P>Victories: </P><span id="wins">0</span>
+            <p>Defeats: </p><span id="loses">0</span>
+            <p>Draws: </p><span id="draws">0</span>
+        </div>
     </div>
 </body>
 </html>

@@ -1,15 +1,51 @@
-const select = document.querySelector("select");
-const para = document.querySelector("p");
-const btn = document.querySelector("button");
-select.addEventListener("change", playerSelectionQuery);
-btn.addEventListener("click",playRound);
+const buttonRock =  document.querySelector( "#btnRock" );
+const buttonPaper = document.querySelector( "#btnPaper" );
+const buttonScissors = document.querySelector( "#btnScissors");
+const showSelection = document.querySelector("#showSelection");
+const showComputer = document.querySelector("#computerSelection");
+const showResult = document.querySelector( "#showResult" );
+buttonRock.addEventListener( "click", rockSelected );
+buttonPaper.addEventListener( "click", paperSelected );
+buttonScissors.addEventListener( "click", scissorsSelected );
 
+var winsCounter = 0;
+var losesCounter = 0;
+var drawsCounter = 0;
+
+function showCounters(){
+    const spanWins =  document.querySelector( "#wins" );
+    const spanLoses =  document.querySelector( "#loses" );
+    const spanDraws =  document.querySelector( "#draws" );
+    spanWins.textContent = winsCounter;
+    spanLoses.textContent = losesCounter;
+    spanDraws.textContent = drawsCounter;
+}
+
+function checkButton(){
+    alert("You press a button");
+}
+
+function rockSelected(){    
+    let choice = "Rock";
+    playerSelectionByButton(choice);
+}
+
+function paperSelected(){    
+    let choice = "Paper";
+    playerSelectionByButton(choice);
+}
+
+function scissorsSelected(){    
+    let choice = "Scissors";
+    playerSelectionByButton(choice);
+}
 //Function for the computer to have a random choice 
 function getComputerChoice(){
     // Array with the possible choices
     const choices = [ "Rock", "Paper", "Scissors" ];
     //Uses Math.floor and Math.random for get the random choice
     ComputerChoice = choices[ Math.floor( Math.random()  * choices.length ) ];
+    showComputer.textContent = `The computer selected ${ComputerChoice}`;
     return ComputerChoice;
 }
 // Function to ask the user for a choice
@@ -23,59 +59,70 @@ function playerSelection(){
     return playerChoice;
 }
 
-function playerSelectionQuery(){
-    const choice = select.value;
+function playerSelectionByButton( choice ){
+    
     if(choice === "Rock"){
-        para.textContent = "You select Rock.";
-        return choice;
+        showSelection.textContent = "You select Rock.";
     }
     else if(choice === "Paper"){
-        para.textContent = "You select Rock.";
-        return choice;
+        showSelection.textContent = "You select Paper.";
     }
     else if(choice === "Scissors"){
-        para.textContent = "You select Rock.";
-        return choice;
+        showSelection.textContent = "You select Scissors.";
     }
     else{
-        para.textContent = "";
+        showSelection.textContent = "";
     }
+    playRound( choice )
 }
 
 //Function to plays a single round of Rock Paper Scissors
-function playRound(){
-    //let playerChoice = playerSelectionQuery();
-    let playerChoice = playerSelection();
+function playRound( playerChoice ){
+    //let playerChoice = playerSelectionByButton();
+    //let playerChoice = playerSelection();
     let computerChoice = getComputerChoice();
     let messageWin = `You Win! ${playerChoice} beats ${computerChoice}`;
     let messageLose = `You Lose! ${computerChoice} beats ${playerChoice}`;
     //Nested win conditions
     if(playerChoice !== computerChoice){
         if(computerChoice === "Rock" && playerChoice === "Paper"){
-            return messageWin;
+            winsCounter += 1;
+            showCounters();
+            return showResult.textContent = messageWin;
         }
         if(computerChoice === "Rock" && playerChoice === "Scissors"){
-            return messageLose;
+            losesCounter +=1;
+            showCounters();
+            return showResult.textContent = messageLose;
         } 
         if(computerChoice === "Paper" && playerChoice === "Scissors"){
-            return messageWin;
+            winsCounter += 1;
+            showCounters();
+            return showResult.textContent = messageWin;
         }
         if(computerChoice === "Paper" && playerChoice === "Rock"){
-            return messageLose;
+            losesCounter += 1;
+            showCounters();
+            return showResult.textContent = messageLose;
         }
         if(computerChoice === "Scissors" && playerChoice === "Rock"){
-            return messageWin;
+            winsCounter += 1;
+            showCounters();
+            return showResult.textContent = messageWin;
         }
         if(computerChoice === "Scissors" && playerChoice === "Paper"){
-            return messageLose;
+            losesCounter += 1;
+            showCounters();
+            return showResult.textContent = messageLose;
         }  
     } 
     else{
-        return `Tie! ${computerChoice} is the same ${playerChoice}`;
-    }
-
-  
+        drawsCounter += 1;
+        showCounters(); 
+        return showResult.textContent = `Tie! ${computerChoice} is the same ${playerChoice}`;
+    }  
 } 
+
 //Function to play a game of 5 rounds
 function game()
 {
