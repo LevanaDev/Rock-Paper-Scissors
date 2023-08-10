@@ -8,8 +8,12 @@ body{
     display: flex;
     box-sizing: border-box;
     flex-direction: column;
+    color: aqua;
 }
 
+h1{
+    text-align: center;
+}
 img{
     width: 175px;
     height: 125px;
@@ -22,6 +26,9 @@ img{
 .figure-container{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    align-content: space-between;
+    justify-content: center;
 }
 
 button{
@@ -29,6 +36,7 @@ button{
     height: 35px;
     font-size: 12px;
     border-radius: 15%;
+    margin: 5px;
 }
 
 .game-container, .counters{
@@ -43,11 +51,44 @@ button{
 
 .game-container{
     flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.counters{
+    background-color: rgb(35, 11, 66);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: flex-start;
+    width: 350px;
+    height: 200px;
 }
 
 .game-score-container{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
+.game-score-title{
+    width: 400px;
+    height: 50px;
+    flex-grow: 1;
+    align-self: flex-start;
+}
 
+.results-container{
+    align-self: center;
+    background-color: rgb(21, 64, 83);
+    box-shadow: 2px 2px 5px rgba(67, 2, 73, 0.5);
+    padding: 10px;
+    margin: 10px;
+}
+
+span{
+    align-self: center;
+}
